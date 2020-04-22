@@ -37,6 +37,9 @@
             let old = $('#player').val()
 
             $('#player').val(json.id + ","+old)
+            $('#pname').val("")
+            $('#hscore').val("")
+            $('#age').val("")
 
         },
         error : function(xhr,errmsg,err) {

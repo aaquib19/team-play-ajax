@@ -14,7 +14,7 @@
      <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
 
     <ol id="dynamic-fields">
-    <button class="add_form_field">Add New Field &nbsp;
+    <button class="add_form_field">Add New Player &nbsp;
       <span style="font-size:16px; font-weight:bold;">+ </span>
     </button>
     <div id="playerlist">
@@ -29,68 +29,11 @@
 
    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-{#<hr>#}
 
-{##}
-{#    <form method="POST" id="post-form">#}
-{#  {% csrf_token %}#}
-{#    <input type="text" class="form-control" id="pname" placeholder="pname">#}
-{#    <input type="text" class="form-control" id="hscore" placeholder="hscore">#}
-{#     <input class="form-control" id="age" placeholder="age">#}
-{##}
-{#   <button type="submit" class="btn btn-primary">Submit</button>#}
-{#</form>#}
-<hr>
-{#<ol id="dynamic-fields">#}
-{#    <button class="add_form_field">Add New Field &nbsp;#}
-{#      <span style="font-size:16px; font-weight:bold;">+ </span>#}
-{#    </button>#}
-{#    <div id="playerlist">#}
-{#        <input type="text" name="pname[1]">#}
-{#        <input type="text" name="score[1]">#}
-{#        <input type="text" name="age[1]">#}
-{#        <input type="text" name="id" value=1>#}
-{#    </div>#}
-{#</ol>#}
 
 
     <script src="/static/js/jquery-2.2.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-<script>
-    $(document).on('submit', '#post-form',function(e){
-        e.preventDefault();
-    $.ajax({
-        type:'POST',
-        url:'{% url "create-player" %}',
-        data:{
-            pname:$('#pname').val(),
-            hscore:$('#hscore').val(),
-            age:$('#age').val(),
-            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-            action: 'post'
-        },
-        dataType: 'json',
-
-        success:function(json){
-           console.log(json)
-            let old = $('#player').val()
-
-            $('#player').val(json.id + ","+old)
-            {#$('#pname').val("")#}
-            {#$('#hscore').val("")#}
-            {#$('#age').val("")#}
-        },
-        error : function(xhr,errmsg,err) {
-        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-    }
-    });
-
-
-
-
-});
-
-</script>
 <script>
     $(document).ready(function() {
 

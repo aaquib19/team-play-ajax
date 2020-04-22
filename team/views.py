@@ -5,11 +5,25 @@ from player.models import Player
 def create_team(request):
     print("in create team")
     if request.POST:
+        tname  = request.POST.get("tname")
+        print(tname)
+        obj = Team.objects.create(
+            tname=tname
+        )
         player_ids =  request.POST.get('pids').split(",")
         for i in player_ids:
             print(i)
             pname = request.POST.get('pname['+str(i) +']')
+            score = request.POST.get('score['+str(i) +']')
+            age = request.POST.get('age['+str(i) +']')
             print(pname)
+            player_obj = Player.objects.create(
+                pname=pname,
+                hscore=score,
+                age=age
+            )
+            obj.player.add(player_obj)
+
         # players  = request.POST.get("pids")
         # plist = players.split(",")
         # plist =plist[:-1]

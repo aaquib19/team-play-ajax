@@ -18,10 +18,10 @@
       <span style="font-size:16px; font-weight:bold;">+ </span>
     </button>
     <div id="playerlist">
-        <input type="text" name="pname[1]">
-        <input type="text" name="score[1]">
-        <input type="text" name="age[1]">
-        <input type="text" name="id" value="1" >
+        <input type="text" name="pname[1]" placeholder="Name">
+        <input type="text" name="score[1]" placeholder="High score">
+        <input type="text" name="age[1]" placeholder="Age">
+        <input type="hidden" name="id" value="1" >
     </div>
 </ol>
         <input type="hidden" name="pids" value="1" id="pids">
@@ -112,10 +112,10 @@
             let pids = $("#pids").val();
              $("#pids").val( pids+","+x);
             $(wrapper).append(
-                '<div><input type="text" name="pname['+ x +']">' +
-                '<input type="text" name="score['+x +']">\n' +
-                '<input type="text" name="age['+x +']">\n' +
-                '<input type="text" name="id" value="'+x +
+                '<div><input type="text" name="pname['+ x +']"   placeholder="Name">' +
+                '<input type="text" name="score['+x +']"   placeholder="High score">\n' +
+                '<input type="text" name="age['+x +']"   placeholder="Age">\n' +
+                '<input type="hidden" name="id" value="'+x +
                 '"><a href="#" class="delete">Delete</a></div>'); //add input box
         } else {
             alert('You Reached the limits')

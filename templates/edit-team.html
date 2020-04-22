@@ -6,17 +6,19 @@
 </head>
 <body>
 
-{{ obj.tname }}
 
 <form method="POST"  action="{% url 'edit-team' pk=obj.pk %}" >
   {% csrf_token %}
+    <label>Team Name  :</label>
     <input type="text" name="tname" class="form-control" id="tname" placeholder="tname" value="{{ obj.tname }}">
      <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
 
-   <button type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-primary">Hit submit to save the edited form</button>
 </form>
 <hr>
 
+
+<div>Add players</div>
 
     <form method="POST" id="post-form">
   {% csrf_token %}

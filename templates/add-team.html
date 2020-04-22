@@ -11,7 +11,7 @@
 <form method="POST"  action="{% url 'create-team' %}" >
   {% csrf_token %}
     <input type="text" name="tname" class="form-control" id="tname" placeholder="tname">
-     <input type="" name="pids" class="form-control" id="player" placeholder="player">
+     <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
 
    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

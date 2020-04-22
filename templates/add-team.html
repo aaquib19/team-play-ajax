@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,32 +13,45 @@
     <input type="text" name="tname" class="form-control" id="tname" placeholder="tname">
      <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
 
-   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<hr>
-
-
-    <form method="POST" id="post-form">
-  {% csrf_token %}
-    <input type="text" class="form-control" id="pname" placeholder="pname">
-    <input type="text" class="form-control" id="hscore" placeholder="hscore">
-     <input class="form-control" id="age" placeholder="age">
-
-   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<hr>
-<ol id="dynamic-fields">
-    <div class="container1">
+    <ol id="dynamic-fields">
     <button class="add_form_field">Add New Field &nbsp;
       <span style="font-size:16px; font-weight:bold;">+ </span>
     </button>
-    <div>
-        <input type="text" name="mytext[]">
-        <input type="text" name="mytext[]">
-        <input type="text" name="mytext[]">
+    <div id="playerlist">
+        <input type="text" name="pname[1]">
+        <input type="text" name="score[1]">
+        <input type="text" name="age[1]">
+        <input type="text" name="id" value="1" >
     </div>
-</div>
 </ol>
+        <input type="hidden" name="pids" value="1" id="pids">
+
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{#<hr>#}
+
+{##}
+{#    <form method="POST" id="post-form">#}
+{#  {% csrf_token %}#}
+{#    <input type="text" class="form-control" id="pname" placeholder="pname">#}
+{#    <input type="text" class="form-control" id="hscore" placeholder="hscore">#}
+{#     <input class="form-control" id="age" placeholder="age">#}
+{##}
+{#   <button type="submit" class="btn btn-primary">Submit</button>#}
+{#</form>#}
+<hr>
+{#<ol id="dynamic-fields">#}
+{#    <button class="add_form_field">Add New Field &nbsp;#}
+{#      <span style="font-size:16px; font-weight:bold;">+ </span>#}
+{#    </button>#}
+{#    <div id="playerlist">#}
+{#        <input type="text" name="pname[1]">#}
+{#        <input type="text" name="score[1]">#}
+{#        <input type="text" name="age[1]">#}
+{#        <input type="text" name="id" value=1>#}
+{#    </div>#}
+{#</ol>#}
 
 
     <script src="/static/js/jquery-2.2.4.min.js"></script>
@@ -86,7 +99,8 @@
 </script>
 <script>
     $(document).ready(function() {
-    var max_fields = 10;
+
+    var max_fields = 11;
     var wrapper = $("#dynamic-fields");
     var add_button = $(".add_form_field");
 
@@ -95,9 +109,14 @@
         e.preventDefault();
         if (x < max_fields) {
             x++;
-            $(wrapper).append('<div>  <input type="text" name="mytext[]">\n' +
-                '        <input type="text" name="mytext[]">\n' +
-                '        <input type="text" name="mytext[]">               <a href="#" class="delete">Delete</a></div>'); //add input box
+            let pids = $("#pids").val();
+             $("#pids").val( pids+","+x);
+            $(wrapper).append(
+                '<div><input type="text" name="pname['+ x +']">' +
+                '<input type="text" name="score['+x +']">\n' +
+                '<input type="text" name="age['+x +']">\n' +
+                '<input type="text" name="id" value="'+x +
+                '"><a href="#" class="delete">Delete</a></div>'); //add input box
         } else {
             alert('You Reached the limits')
         }
@@ -105,10 +124,38 @@
 
     $(wrapper).on("click", ".delete", function(e) {
         e.preventDefault();
+            let pids = $("#pids").val();
+           let cc =  $(this).parent('div').children().get(3);
+            pids = pids.split(",")
+            pids = pids.filter(function (item) {
+                return item!= cc.value
+                }
+            )
+
+        $("#pids").val(pids.join(","));
+
+
         $(this).parent('div').remove();
-        x--;
     })
 });
+</script>
+
+
+<script>
+        var add_button = $(".add_form_field");
+
+        $(add_button).click(function(e) {
+e.preventDefault();
+    $(document).ready(function() {
+        let div_data = $("#playerlist")
+        console.log(div_data.children())
+
+    })
+
+});
+
+
+
 </script>
 </body>
 </html>

@@ -30,12 +30,15 @@
 
 <hr>
 
+<h1>Player list</h1>
+<ol>
 
  {% for player in obj.player.all %}
-     <div>{{ player.pname }}</div> <a href="{% url 'delete-team' teamid=obj.id playerid=player.id %}">delete</a>
-
+<li>
+    <div>{{ player.pname }}</div> <a href="{% url 'delete-team' teamid=obj.id playerid=player.id %}">delete</a>
+</li>
 {% endfor %}
-
+</ol>
     <script src="/static/js/jquery-2.2.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 <script>

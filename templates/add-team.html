@@ -8,18 +8,17 @@
 
 
 
-<form method="POST"  action="{% url 'create-team' %}" id="post-form">
+<form method="POST"  action="{% url 'create-team' %}" >
   {% csrf_token %}
-    <input type="text" class="form-control" id="tname" placeholder="tname">
-     <input type="" class="form-control" id="player" placeholder="player">
+    <input type="text" name="tname" class="form-control" id="tname" placeholder="tname">
+     <input type="" name="pids" class="form-control" id="player" placeholder="player">
 
    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <hr>
 
 
-
-<form method="POST" id="post-form">
+    <form method="POST" id="post-form">
   {% csrf_token %}
     <input type="text" class="form-control" id="pname" placeholder="pname">
     <input type="text" class="form-control" id="hscore" placeholder="hscore">
@@ -27,6 +26,7 @@
 
    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
     <script src="/static/js/jquery-2.2.4.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
 <script>

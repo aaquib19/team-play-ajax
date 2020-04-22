@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 
 from player.views import create_player
-from team.views import  create_team
+from team.views import  create_team,edit_team,delete_team
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('add-player/', create_player,name="create-player"),
     path('add-team/', create_team, name="create-team"),
+    path('edit-team/<int:pk>', edit_team, name="edit-team"),
+    path('delete-team/<int:teamid>/<int:playerid>', delete_team, name="delete-team"),
 ]
+

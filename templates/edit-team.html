@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{ obj.tname }}
+
+<form method="POST"  action="{% url 'edit-team' pk=obj.pk %}" >
+  {% csrf_token %}
+    <input type="text" name="tname" class="form-control" id="tname" placeholder="tname" value="{{ obj.tname }}">
+     <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<hr>
+
+
+    <form method="POST" id="post-form">
+  {% csrf_token %}
+    <input type="text" class="form-control" id="pname" placeholder="pname">
+    <input type="text" class="form-control" id="hscore" placeholder="hscore">
+     <input class="form-control" id="age" placeholder="age">
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<hr>
+
+
+ {% for player in obj.player.all %}
+     <div>{{ player.pname }}</div> <a href="{% url 'delete-team' teamid=obj.id playerid=player.id %}">delete</a>
+
+{% endfor %}
+
+    <script src="/static/js/jquery-2.2.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+<script>
+    $(document).on('submit', '#post-form',function(e){
+        e.preventDefault();
+    $.ajax({
+        type:'POST',
+        url:'{% url "create-player" %}',
+        data:{
+            pname:$('#pname').val(),
+            hscore:$('#hscore').val(),
+            age:$('#age').val(),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        dataType: 'json',
+
+        success:function(json){
+           console.log(json)
+            let old = $('#player').val()
+
+            $('#player').val(json.id + ","+old)
+            {#$('#pname').val("")#}
+            {#$('#hscore').val("")#}
+            {#$('#age').val("")#}
+
+        },
+        error : function(xhr,errmsg,err) {
+        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+    }
+    });
+});
+
+</script>
+</body>
+</html>

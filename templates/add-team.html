@@ -79,12 +79,6 @@
             {#$('#pname').val("")#}
             {#$('#hscore').val("")#}
             {#$('#age').val("")#}
-
-            let wrapper = document.getElementById("dynamic-fields");
-
-          var input = document.createElement("input");
-// ... and so on
-            $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
         },
         error : function(xhr,errmsg,err) {
         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
@@ -141,21 +135,6 @@
 </script>
 
 
-<script>
-        var add_button = $(".add_form_field");
 
-        $(add_button).click(function(e) {
-e.preventDefault();
-    $(document).ready(function() {
-        let div_data = $("#playerlist")
-        console.log(div_data.children())
-
-    })
-
-});
-
-
-
-</script>
 </body>
 </html>

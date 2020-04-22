@@ -8,7 +8,6 @@
 
 
 <form method="POST"  action="{% url 'edit-team' pk=obj.pk %}" >
-  {% csrf_token %}
     <label>Team Name  :</label>
     <input type="text" name="tname" class="form-control" id="tname" placeholder="tname" value="{{ obj.tname }}">
      <input type="hidden" name="pids" class="form-control" id="player" placeholder="player">
@@ -26,7 +25,7 @@
     <input type="text" class="form-control" id="hscore" placeholder="hscore">
      <input class="form-control" id="age" placeholder="age">
 
-   <button type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-primary">Create New player</button>
 </form>
 
 

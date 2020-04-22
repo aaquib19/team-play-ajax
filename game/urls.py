@@ -22,6 +22,6 @@ from team.views import  create_team
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add-player/', create_player,name="create"),
+    path('add-player/', create_player,name="create-player"),
     path('add-team/', create_team, name="create-team"),
 ]

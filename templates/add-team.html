@@ -34,7 +34,7 @@
         e.preventDefault();
     $.ajax({
         type:'POST',
-        url:'{% url "create" %}',
+        url:'{% url "create-player" %}',
         data:{
             pname:$('#pname').val(),
             hscore:$('#hscore').val(),
